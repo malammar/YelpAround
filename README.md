@@ -1,4 +1,4 @@
-# yelp-graphql-vue
+# YelpAround
 
 > An exercise in using Yelp's new GraphQL API.
 
