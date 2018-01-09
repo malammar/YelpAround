@@ -4,6 +4,7 @@
 
 ## Technology Used
 * VueJS: Front-end framework
+* Vue-Loader: A vue component loader for webpack
 * WebPack: Dependecy management
 * Jest: Unit Testing
 * GraphQL: Yelp API access
