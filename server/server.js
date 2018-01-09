@@ -1,23 +1,35 @@
-const proxy = require('express-http-proxy');
-const express = require('express');
+const express = require('express')
+const request = require('request')
+const bodyParser = require('body-parser')
+const cors = require('cors')
 
 // Yelp API Token
-const ACCESS_TOKEN = 'qPL47CBIgMj1rjtXgx36yiCjAMs-bBHv77vQHm2opGv3AHz6wchClw7GQDR7XUau5AmWW5JkUZ7eaZ5U1MyEAIBde_VJZoZLofo1QsEvcRWeLO7Bpi99gPSC0CFUWnYx';
+const ACCESS_TOKEN =
+  'qPL47CBIgMj1rjtXgx36yiCjAMs-bBHv77vQHm2opGv3AHz6wchClw7GQDR7XUau5AmWW5JkUZ7eaZ5U1MyEAIBde_VJZoZLofo1QsEvcRWeLO7Bpi99gPSC0CFUWnYx'
+const YELP_API_URL = 'https://api.yelp.com/v3/graphql'
 
-var app = express();
+var app = express()
 
-app.use('/yelpGraphQLAPI', proxy('https://api.yelp.com/v3/graphql', {
-  proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
-    proxyReqOpts.headers['Authorization'] = 'Bearer ' + ACCESS_TOKEN;
-    return proxyReqOpts;
-  },
-  userResHeaderDecorator: (headers) => {
-    headers['Access-Control-Allow-Origin'] = 'http://localhost:8080';
-    headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS';
-    return headers;
-  }})
-);
+app.use(cors({
+  origin: 'http://localhost:8080',
+  optionsSuccessStatus: 200
+}))
 
-app.listen(3020, () => console.log('GraphQL Proxy server listening on port 3000.'));
+app.use(bodyParser.json());
 
-exports = module.exports = app;
+app.post('/api', (req, resp) => {
+  request.post({
+    url: YELP_API_URL,
+    method: 'POST',
+    // auth: ACCESS_TOKEN,
+    headers: {
+      Authorization: 'Bearer ' + ACCESS_TOKEN
+    },
+    json: true,
+    body: req.body
+  }, (err, res, body) => {
+    resp.send(body);
+  })
+})
+
+app.listen(3020)

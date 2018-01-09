@@ -1,13 +1,27 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HomePage from '@/components/HomePage'
+import Home from '@/components/Home'
+import Search from '@/components/Search'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [{
     path: '/',
-    name: 'HomePage',
-    component: HomePage
+    name: 'Home',
+    component: Home
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search,
+    props: (route) => ({
+      term: route.query.term || 'food',
+      location: route.query.location || '92860',
+      radius: route.query.radius || 3,
+      categories: route.query.categories || '',
+      limit: route.query.limit || '',
+      offset: route.query.offset || ''
+    })
   }]
 })

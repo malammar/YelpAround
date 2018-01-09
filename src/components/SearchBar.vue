@@ -19,6 +19,11 @@ export default {
       placeholder: 'Find',
       distanceOptions: [1, 3, 5, 8, 13]
     }
+  },
+  methods: {
+    searchYelp () {
+      console.log('search')
+    }
   }
 }
 </script>

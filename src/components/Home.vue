@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page">
+  <div class="home">
     <h1>{{title}}</h1>
     <h2>{{subtitle}}</h2>
 
@@ -11,28 +11,17 @@
 
 <script>
 import SearchBar from './SearchBar.vue'
-import gql from 'graphql-tag'
 
 export default {
-  name: 'HomePage',
+  name: 'Home',
   components: {
     SearchBar
-  },
-  apollo: {
-    businessList: gql`{
-      business(id: "garaje-san-francisco") {
-        name
-        id
-        rating
-        url
-      }
-    }`
   },
   data () {
     return {
       title: 'YelpAround',
       subtitle: 'Find businesses around you using Yelp\'s API.',
-      businessList: []
+      search: []
     }
   }
 }

@@ -12,7 +12,7 @@ Vue.config.productionTip = false
 
 // Apollo client configuration and instantiation
 const httpLink = new HttpLink({
-  uri: 'http://localhost:3020'
+  uri: 'http://localhost:3020/api'
 })
 
 // Create the apollo client
