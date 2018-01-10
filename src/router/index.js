@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
+import FavoritesList from '@/components/FavoritesList'
 import Search from '@/components/Search'
 
 Vue.use(Router)
@@ -10,8 +11,7 @@ export default new Router({
     path: '/',
     name: 'Home',
     component: Home
-  },
-  {
+  }, {
     path: '/search',
     name: 'Search',
     component: Search,
@@ -23,5 +23,9 @@ export default new Router({
       limit: route.query.limit || '',
       offset: route.query.offset || ''
     })
+  }, {
+    path: '/favorites',
+    name: 'Favorites',
+    component: FavoritesList
   }]
 })

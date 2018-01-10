@@ -1,6 +1,6 @@
 <template>
   <div class="search-page">
-    <h1>{{title}}</h1>
+    <h1><router-link to="/">{{title}}</router-link></h1>
     <h2>{{subtitle}}</h2>
 
     <search-bar></search-bar>

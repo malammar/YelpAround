@@ -1,16 +1,17 @@
 <template>
   <div class="search-bar">
-    
-    <input type="search" name="search-text" v-model="term">
-    within
-    
-    <select name="distance" v-model="radius">
-      <option v-for="distance in distanceOptions" :value="distance">{{distance}} mile</option>
-    </select>
-    of
-    <input type="text" name="zipcode" pattern="[0-9]{5}" title="5 digit zip code" v-model="zipcode">
-    
-    <button v-on:click="searchYelp">Search</button>
+    <form v-on:submit.prevent="searchYelp">
+      <input type="search" name="search-text" v-model="term">
+      within
+      
+      <select name="distance" v-model="radius">
+        <option v-for="distance in distanceOptions" :value="distance">{{distance}} mile</option>
+      </select>
+      of
+      <input type="text" name="zipcode" pattern="[0-9]{5}" title="5 digit zip code" v-model="zipcode">
+      
+      <button v-on:click="searchYelp">Search</button>
+    </form>
   </div>
 </template>
 

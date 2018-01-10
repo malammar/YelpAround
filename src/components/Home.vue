@@ -1,11 +1,11 @@
 <template>
   <div class="home">
-    <h1>{{title}}</h1>
+    <h1><router-link to="/">{{title}}</router-link></h1>
     <h2>{{subtitle}}</h2>
 
     <search-bar></search-bar>
     <h3>Or</h3>
-    <a href="/favorites">Go to Your Favorites</a>
+    <router-link to="/favorites">Go to Your Favorites</router-link>
   </div>
 </template>
 
@@ -20,8 +20,7 @@ export default {
   data () {
     return {
       title: 'YelpAround',
-      subtitle: 'Find businesses around you using Yelp\'s API.',
-      search: []
+      subtitle: 'Find businesses around you using Yelp\'s API.'
     }
   }
 }
