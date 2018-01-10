@@ -22,6 +22,9 @@
 import SearchBar from './SearchBar.vue'
 import Favorites from '../utils/favorites.js'
 
+// eslint-disable-next-line
+import Router from 'vue-router'
+
 export default {
   name: 'FavoritesList',
   components: {

@@ -12,6 +12,9 @@
 <script>
 import SearchBar from './SearchBar.vue'
 
+// eslint-disable-next-line
+import Router from 'vue-router'
+
 export default {
   name: 'Home',
   components: {
