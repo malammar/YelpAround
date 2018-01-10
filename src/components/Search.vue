@@ -6,14 +6,23 @@
     <search-bar></search-bar>
 
     <ul v-if="search.business">
-      <li v-for="business in search.business">{{business.name}}</li>
+      <li v-for="business in search.business">
+        {{business.name}}
+        <button v-on:click="toggleFavorite(business)">
+          {{favorites.isFavorite(business) ? '&#9733;' : '&#9734;'}}
+        </button>
+      </li>
     </ul>
+    <div class="loading" v-if="isLoading">
+      <img src="/assets/loader.gif" /> Loading...
+    </div>
   </div>
 </template>
 
 <script>
 import SearchBar from './SearchBar.vue'
 import gql from 'graphql-tag'
+import Favorites from '../utils/favorites.js'
 
 export default {
   name: 'SearchPage',
@@ -21,6 +30,7 @@ export default {
     SearchBar
   },
   apollo: {
+    $loadingKey: 'isLoading',
     search: {
       query () {
         if (this.term && this.location && this.radius) {
@@ -29,6 +39,7 @@ export default {
               total
               business {
                 name
+                id
                 reviews {
                   text
                   rating
@@ -54,7 +65,17 @@ export default {
     return {
       title: 'YelpAround',
       subtitle: 'Find businesses around you using Yelp\'s API.',
-      search: {}
+      search: {},
+      isLoading: 0,
+      favorites: new Favorites(),
+      toggleFavorite: (business) => {
+        if (this.favorites.isFavorite(business)) {
+          this.favorites.remove(business)
+        } else {
+          this.favorites.add(business)
+          this.favorites = new Favorites()
+        }
+      }
     }
   }
 }
@@ -65,6 +86,10 @@ export default {
 
 h1, h2 {
   font-weight: normal;
+}
+
+ul {
+  list-style: none;
 }
 
 </style>

@@ -20,8 +20,8 @@ app.use(bodyParser.json());
 app.post('/api', (req, resp) => {
   request.post({
     url: YELP_API_URL,
+    proxy: 'http://29119:tue@proxy-west.aero.org:8080',
     method: 'POST',
-    // auth: ACCESS_TOKEN,
     headers: {
       Authorization: 'Bearer ' + ACCESS_TOKEN
     },

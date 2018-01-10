@@ -1,13 +1,16 @@
 <template>
   <div class="search-bar">
-    <input type="search" name="search-text">
+    
+    <input type="search" name="search-text" v-model="term">
     within
-    <select name="distance">
+    
+    <select name="distance" v-model="radius">
       <option v-for="distance in distanceOptions" :value="distance">{{distance}} mile</option>
     </select>
     of
-    <input type="text" name="zipcode" pattern="[0-9]{5}" title="5 digit zip code">
-    <button>Search</button>
+    <input type="text" name="zipcode" pattern="[0-9]{5}" title="5 digit zip code" v-model="zipcode">
+    
+    <button v-on:click="searchYelp">Search</button>
   </div>
 </template>
 
@@ -17,12 +20,22 @@ export default {
   data () {
     return {
       placeholder: 'Find',
+      term: '',
+      zipcode: '',
+      radius: 0,
       distanceOptions: [1, 3, 5, 8, 13]
     }
   },
   methods: {
     searchYelp () {
-      console.log('search')
+      this.$router.push({
+        path: 'search',
+        query: {
+          term: this.term,
+          radius: this.radius,
+          location: this.zipcode
+        }
+      })
     }
   }
 }
