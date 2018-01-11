@@ -1,7 +1,5 @@
 <template>
   <div class="favorites">
-    <h1><router-link to="/">{{title}}</router-link></h1>
-
     <search-bar></search-bar>
 
     <ul v-if="favoritesList.length">

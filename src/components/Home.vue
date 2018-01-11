@@ -1,8 +1,5 @@
 <template>
   <div class="home">
-    <h1><router-link to="/">{{title}}</router-link></h1>
-    <h2>{{subtitle}}</h2>
-
     <search-bar></search-bar>
     <h3>Or</h3>
     <router-link to="/favorites">Go to Your Favorites</router-link>

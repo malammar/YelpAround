@@ -1,7 +1,5 @@
 <template>
   <div class="search-page">
-    <h1><router-link to="/">{{title}}</router-link></h1>
-    <h2>{{subtitle}}</h2>
 
     <search-bar></search-bar>
 
@@ -14,7 +12,7 @@
       </li>
     </ul>
     <div class="loading" v-if="isLoading">
-      <img src="/assets/loader.gif" /> Loading...
+      <img src="../assets/loader.gif"> Loading...
     </div>
   </div>
 </template>
@@ -66,8 +64,6 @@ export default {
   props: ['term', 'location', 'radius'],
   data () {
     return {
-      title: 'YelpAround',
-      subtitle: 'Find businesses around you using Yelp\'s API.',
       search: {},
       isLoading: 0,
       favorites: new Favorites(),
