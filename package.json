@@ -27,7 +27,8 @@
     "graphql-tag": "^2.6.1",
     "vue": "^2.5.2",
     "vue-apollo": "^3.0.0-alpha.3",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-underscore": "^0.1.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
